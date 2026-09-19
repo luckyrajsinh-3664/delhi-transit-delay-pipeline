@@ -2,4 +2,12 @@
 __pycache__/
 *.pyc
 venv/
+venv-dq/
 raw_data/
+raw_data_container/
+processed_data/
+quality/reports/
+logs/
+static_gtfs/
+*accessKeys*.csv
+*.pem

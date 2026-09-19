@@ -16,7 +16,7 @@ url = f"{base_url}?key={api_key}"
 
 print(f"Fetching from: {base_url}?key=***HIDDEN***")
 
-response = requests.get(url)
+response = requests.get(url, timeout=30)
 
 if response.status_code != 200:
     print(f"Request failed. Status code: {response.status_code}")
