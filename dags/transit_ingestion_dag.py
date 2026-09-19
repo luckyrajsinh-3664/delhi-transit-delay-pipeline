@@ -20,6 +20,9 @@ def run_ingestion():
     records = fetch_vehicle_positions()
     print(f"Fetched {len(records)} vehicle records.")
 
+    if not records:
+        raise ValueError("Feed returned 0 vehicle records - failing so Airflow retries")
+
     filepath, filename = save_locally(records)
     print(f"Saved locally to {filepath}")
 
