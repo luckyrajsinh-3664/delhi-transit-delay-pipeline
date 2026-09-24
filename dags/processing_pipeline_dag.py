@@ -40,6 +40,7 @@ with DAG(
     schedule_interval=timedelta(hours=1),
     start_date=datetime(2026, 9, 24),
     catchup=False,
+    max_active_runs=1,
     tags=["transit", "processing"],
 ) as dag:
 
