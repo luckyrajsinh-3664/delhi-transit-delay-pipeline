@@ -31,10 +31,11 @@ def run_ingestion():
 with DAG(
     dag_id="delhi_transit_ingestion",
     default_args=default_args,
-    description="Fetch live Delhi bus GPS data and upload to S3",
+    description="...",
     schedule_interval=timedelta(minutes=10),
-    start_date=datetime(2026, 9, 18),
+    start_date=datetime(...),
     catchup=False,
+    max_active_runs=1,
     tags=["transit", "ingestion"],
 ) as dag:
 
