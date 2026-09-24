@@ -11,3 +11,4 @@ logs/
 static_gtfs/
 *accessKeys*.csv
 *.pem
+genai/output/

@@ -43,7 +43,8 @@ WITH ranked AS (
 SELECT hour_label, route_id, avg_moving_speed_kmph, slow_rank_in_hour
 FROM ranked
 WHERE slow_rank_in_hour = 1
-ORDER BY hour_label;
+ORDER BY hour_label
+LIMIT 24;
 
 
 -- =====================================================================
