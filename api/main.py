@@ -8,6 +8,7 @@ import pandas as pd
 import psycopg2
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 MODEL_PATH = Path("ml/model/speed_model.joblib")
@@ -29,6 +30,13 @@ app = FastAPI(
     title="RouteRadar API",
     description="Read-only API over the Delhi bus congestion warehouse.",
     lifespan=lifespan,
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_methods=["GET"],
+    allow_headers=["*"],
 )
 
 
