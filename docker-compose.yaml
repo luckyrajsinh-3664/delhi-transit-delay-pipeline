@@ -15,12 +15,19 @@ x-airflow-common:
     AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
     AWS_REGION: ${AWS_REGION}
     S3_BUCKET_NAME: ${S3_BUCKET_NAME}
+    WAREHOUSE_PASSWORD: ${WAREHOUSE_PASSWORD}
+    WAREHOUSE_DB: transit_dw
+    WAREHOUSE_USER: dw_admin
   volumes:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
     - ./ingestion:/opt/airflow/ingestion
     - ./raw_data:/opt/airflow/raw_data
+    - ./transformation:/opt/airflow/transformation
+    - ./quality:/opt/airflow/quality
+    - ./warehouse:/opt/airflow/warehouse
+    - ./processed_data:/opt/airflow/processed_data
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
@@ -99,8 +106,8 @@ services:
     command:
       - -c
       - |
-        mkdir -p /sources/logs /sources/dags /sources/plugins /sources/raw_data
-        chown -R "${AIRFLOW_UID:-50000}:0" /sources/{logs,dags,plugins,raw_data}
+        mkdir -p /sources/logs /sources/dags /sources/plugins /sources/raw_data /sources/processed_data
+        chown -R "${AIRFLOW_UID:-50000}:0" /sources/{logs,dags,plugins,raw_data,processed_data}
         exec /entrypoint airflow version
     environment:
       <<: *airflow-common-env
