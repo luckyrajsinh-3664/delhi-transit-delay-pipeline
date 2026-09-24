@@ -11,4 +11,4 @@ logs/
 static_gtfs/
 *accessKeys*.csv
 *.pem
-genai/output/
+genai/output/ml/model/ 
