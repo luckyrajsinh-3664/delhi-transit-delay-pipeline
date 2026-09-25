@@ -36,6 +36,7 @@ def connect():
         dbname=os.getenv("WAREHOUSE_DB", "transit_dw"),
         user=os.getenv("WAREHOUSE_USER", "dw_admin"),
         password=password,
+        sslmode="require",
     )
 
 

@@ -15,9 +15,11 @@ x-airflow-common:
     AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
     AWS_REGION: ${AWS_REGION}
     S3_BUCKET_NAME: ${S3_BUCKET_NAME}
+    WAREHOUSE_HOST: ${WAREHOUSE_HOST}
+    WAREHOUSE_PORT: ${WAREHOUSE_PORT}
     WAREHOUSE_PASSWORD: ${WAREHOUSE_PASSWORD}
-    WAREHOUSE_DB: transit_dw
-    WAREHOUSE_USER: dw_admin
+    WAREHOUSE_DB: ${WAREHOUSE_DB}
+    WAREHOUSE_USER: ${WAREHOUSE_USER}
   volumes:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs

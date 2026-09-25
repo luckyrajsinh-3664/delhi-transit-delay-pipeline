@@ -1,12 +1,3 @@
-"""
-processing_pipeline_dag.py - orchestrates the processing side of RouteRadar:
-Spark transformation -> Great Expectations quality checks -> warehouse load.
-
-Runs hourly, well after ingestion has accumulated new raw_data files.
-Each stage is a separate task so failures are isolated and visible per stage:
-if the quality checks fail, the load task does not run (Airflow's default
-trigger rule stops the downstream task on an upstream failure).
-"""
 from datetime import datetime, timedelta
 
 from airflow import DAG
@@ -28,10 +19,7 @@ PROCESSED_DATA = "/opt/airflow/processed_data"
 SPARK_ENV = {
     "JAVA_HOME": "/usr/lib/jvm/java-17-openjdk-amd64",
 }
-WAREHOUSE_ENV = {
-    "WAREHOUSE_HOST": "warehouse",
-    "WAREHOUSE_PORT": "5432",
-}
+WAREHOUSE_ENV = {}
 
 with DAG(
     dag_id="delhi_transit_processing",
